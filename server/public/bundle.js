@@ -27084,7 +27084,9 @@ function mapStateToProps(state) {
   return { users: state.users };
 }
 
-function loadData() {}
+function loadData(store) {
+  return store.dispatch((0, _actions.fetchUsers)());
+}
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, { fetchUsers: _actions.fetchUsers })(UsersList);
 

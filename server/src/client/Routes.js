@@ -1,26 +1,26 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
-import Home from './components/Home'
-import UsersList, { loadData } from "./components/UsersList"
+import HomePage from './pages/HomePage'
+import UsersListPage, { loadUserListPageData } from "./pages/UsersListPage"
 
 export const routeConfig = [
   {
     path: '/',
-    component: Home,
+    component: HomePage,
     exact: true
   },
   {
-    loadData,
+    loadData: loadUserListPageData,
     path: '/users',
-    component: UsersList
+    component: UsersListPage
   }
 ]
 
 export default function Routes() {
   return (
     <div>
-      <Route exact path='/' component={Home} />
-      <Route path='/users' component={UsersList} />
+      <Route exact path='/' component={HomePage} />
+      <Route path='/users' component={UsersListPage} />
     </div>
   )
 }

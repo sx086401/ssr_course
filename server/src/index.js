@@ -19,9 +19,17 @@ app.use(express.static('public'))
 app.get('*', (req, res) => {
   const store = createServerStore(req)
 
-  const promises = matchRoutes(routeConfig, req.path).map(({ route }) => {
-    return route.loadData ? route.loadData(store) : null
-  })
+  const promises =
+    matchRoutes(routeConfig, req.path)
+      .map(({ route }) => route.loadData ? route.loadData(store) : null)
+      .map(promise => {
+        if (promise) {
+          return new Promise((resolve, reject) => {
+            promise.then(resolve).catch(resolve)
+          })
+        }
+        return null
+      })
 
   const context = {}
   const content = renderer(req, store, context)

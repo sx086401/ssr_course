@@ -5,7 +5,6 @@ import { routeConfig } from './client/Routes'
 import renderer from './helpers/renderer'
 import createServerStore from './helpers/createStore'
 import proxy from 'express-http-proxy'
-import { url } from 'inspector'
 
 const app = express()
 

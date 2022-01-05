@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom'
 import HomePage from './pages/HomePage'
 import UsersListPage, { loadUserListPageData } from "./pages/UsersListPage"
 import App from './App'
+import NotFoundPage from './pages/NotFoundPage'
 
 export const routeConfig = [
   {
@@ -17,6 +18,9 @@ export const routeConfig = [
         loadData: loadUserListPageData,
         path: '/users',
         component: UsersListPage
+      },
+      {
+        ...NotFoundPage
       }
     ]
   }

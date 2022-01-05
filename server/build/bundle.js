@@ -109,6 +109,10 @@ var _App = __webpack_require__(12);
 
 var _App2 = _interopRequireDefault(_App);
 
+var _NotFoundPage = __webpack_require__(24);
+
+var _NotFoundPage2 = _interopRequireDefault(_NotFoundPage);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var routeConfig = exports.routeConfig = [_extends({}, _App2.default, {
@@ -120,7 +124,7 @@ var routeConfig = exports.routeConfig = [_extends({}, _App2.default, {
     loadData: _UsersListPage.loadUserListPageData,
     path: '/users',
     component: _UsersListPage2.default
-  }]
+  }, _extends({}, _NotFoundPage2.default)]
 })];
 
 function Routes() {
@@ -283,8 +287,15 @@ app.get('*', function (req, res) {
     return route.loadData ? route.loadData(store) : null;
   });
 
+  var context = {};
+  var content = (0, _renderer2.default)(req, store, context);
+
+  if (context.notFound) {
+    res.status(404);
+  }
+
   Promise.all(promises).then(function () {
-    res.send((0, _renderer2.default)(req, store));
+    res.send(content);
   });
 });
 
@@ -503,13 +514,13 @@ var _serializeJavascript2 = _interopRequireDefault(_serializeJavascript);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function renderer(req, store) {
+function renderer(req, store, context) {
   var content = (0, _server.renderToString)(_react2.default.createElement(
     _reactRedux.Provider,
     { store: store },
     _react2.default.createElement(
       _reactRouterDom.StaticRouter,
-      { location: req.path, context: {} },
+      { location: req.path, context: context },
       _react2.default.createElement(
         'div',
         null,
@@ -754,6 +765,40 @@ function authReducer() {
       return state;
   }
 }
+
+/***/ }),
+/* 24 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var NotFoundPage = function NotFoundPage(_ref) {
+  var _ref$staticContext = _ref.staticContext,
+      staticContext = _ref$staticContext === undefined ? {} : _ref$staticContext;
+
+  staticContext.notFound = true;
+  return _react2.default.createElement(
+    'h1',
+    null,
+    'Oops, route not found'
+  );
+};
+
+// eslint-disable-next-line import/no-anonymous-default-export
+exports.default = {
+  component: NotFoundPage
+};
 
 /***/ })
 /******/ ]);

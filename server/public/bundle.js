@@ -26987,6 +26987,10 @@ var _App = __webpack_require__(451);
 
 var _App2 = _interopRequireDefault(_App);
 
+var _NotFoundPage = __webpack_require__(481);
+
+var _NotFoundPage2 = _interopRequireDefault(_NotFoundPage);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var routeConfig = exports.routeConfig = [_extends({}, _App2.default, {
@@ -26998,7 +27002,7 @@ var routeConfig = exports.routeConfig = [_extends({}, _App2.default, {
     loadData: _UsersListPage.loadUserListPageData,
     path: '/users',
     component: _UsersListPage2.default
-  }]
+  }, _extends({}, _NotFoundPage2.default)]
 })];
 
 function Routes() {
@@ -28745,6 +28749,40 @@ function authReducer() {
       return state;
   }
 }
+
+/***/ }),
+/* 481 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(8);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var NotFoundPage = function NotFoundPage(_ref) {
+  var _ref$staticContext = _ref.staticContext,
+      staticContext = _ref$staticContext === undefined ? {} : _ref$staticContext;
+
+  staticContext.notFound = true;
+  return _react2.default.createElement(
+    'h1',
+    null,
+    'Oops, route not found'
+  );
+};
+
+// eslint-disable-next-line import/no-anonymous-default-export
+exports.default = {
+  component: NotFoundPage
+};
 
 /***/ })
 /******/ ]);

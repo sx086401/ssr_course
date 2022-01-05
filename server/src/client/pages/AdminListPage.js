@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchAdmins } from '../actions'
-import { requireAuth } from '../components/hocs/requireAuth'
+import requireAuth from '../components/hocs/requireAuth'
 
 class AdminListPage extends Component {
   componentDidMount() {
@@ -30,6 +30,4 @@ export function loadAdminsPageData(store) {
   return store.dispatch(fetchAdmins())
 }
 
-export default connect(mapStateToProps, { fetchAdmins })(
-  requireAuth(AdminListPage)
-  )
+export default connect(mapStateToProps, { fetchAdmins })(requireAuth(AdminListPage))

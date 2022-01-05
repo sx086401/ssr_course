@@ -1,8 +1,9 @@
-import React, { Component } from 'core-js/library/fn/reflect/es7/metadata'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 
-export default function HigherOrederComponent (ChildComonent) {
+// eslint-disable-next-line import/no-anonymous-default-export
+export default ChildComponent => {
   class RequireAuth extends Component {
     render() {
       switch (this.props.auth) {
@@ -11,7 +12,7 @@ export default function HigherOrederComponent (ChildComonent) {
         case null:
           return <div>Loading...</div>
         default:
-          return <ChildComonent {...this.props}/>
+          return <ChildComponent {...this.props}/>
       }
     }
   }
